@@ -1,12 +1,12 @@
 import express from "express";
-import KPI from "../models/KPI.js";
+import Transaction from "../models/Transaction.js";
 
 const router = express.Router();
 
-router.get("/kpis", async (req, res) => {
+router.get("/transactions", async (req, res) => {
   try {
-    const kpis = await KPI.find();
-    return res.status(200).json(kpis);
+    const transactions = await Transaction.find();
+    return res.status(200).json(transactions);
   } catch (error) {
     console.log(error);
     return res.status(404).json({ message: error.message });
