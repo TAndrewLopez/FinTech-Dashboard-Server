@@ -9,6 +9,8 @@ import kpiRoutes from "./routes/kpi.js";
 import KPI from "./models/KPI.js";
 import productRoutes from "./routes/product.js";
 import Product from "./models/Product.js";
+import Transaction from "./models/Transaction.js";
+import transactionRoutes from "./routes/transaction.js";
 
 import { kpis, products, transactions } from "./data/data.js";
 
@@ -26,6 +28,7 @@ app.use(cors());
 // ROUTES
 app.use("/kpi", kpiRoutes);
 app.use("/product", productRoutes);
+app.use("/transaction", transactionRoutes);
 
 // MONGOOSE SETUP
 const PORT = process.env.PORT || 9000;
@@ -38,9 +41,9 @@ mongoose
     app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
 
     // ADD DATA TO DB AS NEEDED
-    await mongoose.connection.db.dropDatabase();
-    KPI.insertMany(kpis);
-    Product.insertMany(products);
+    // await mongoose.connection.db.dropDatabase();
+    // KPI.insertMany(kpis);
+    // Product.insertMany(products);
     // Transaction.insertMany(transactions);
   })
   .catch((err) => console.log(`${err} did not connect`));
