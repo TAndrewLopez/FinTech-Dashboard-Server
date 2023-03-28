@@ -6,6 +6,8 @@ import dotenv from "dotenv";
 import helmet from "helmet";
 import morgan from "morgan";
 import kpiRoutes from "./routes/kpi.js";
+import KPI from "./models/KPI.js";
+import { kpis } from "./data/data.js";
 
 // CONFIGURATIONS
 dotenv.config();
@@ -30,5 +32,9 @@ mongoose
   })
   .then(async () => {
     app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
+
+    // ADD DATA TO DB AS NEEDED
+    // await mongoose.connection.db.dropDatabase();
+    // KPI.insertMany(kpis);
   })
   .catch((err) => console.log(`${err} did not connect`));
